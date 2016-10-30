@@ -10,7 +10,7 @@ using namespace cv;
 
 int main()
 {
-    VideoCapture cap("test.avi");
+    VideoCapture cap("./datasets/david.mpg");
 
     CV_Assert(cap.isOpened());
 

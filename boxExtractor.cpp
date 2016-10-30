@@ -2,14 +2,7 @@
 
 using namespace cv;
 
-
-void BoxExtractor::mouseHandler(int event, int x, int y, int flags, void *param)
-{
-	BoxExtractor *self = static_cast<BoxExtractor*>(param);
-	self->opencv_mouse_callback(event, x, y, flags, param);
-}
-
-void BoxExtractor::opencv_mouse_callback(int event, int x, int y, int, void *param)
+void BoxExtractor::mouseCallback(int event, int x, int y, int, void *param)
 {
 	handlerT * data = (handlerT*)param;
 	switch (event)
@@ -62,13 +55,13 @@ Rect BoxExtractor::extract(const std::string& windowName, const Mat& img, bool s
 
 	// show the image and give feedback to user
 	imshow(windowName, img);
-	printf("Select an object to track and then press SPACE/BACKSPACE/ENTER button!\n");
+	printf("Select an object and then press SPACE/BACKSPACE/ENTER button!\n");
 
 	// copy the data, rectangle should be drawn in the fresh image
 	params.image = img.clone();
 
 	// select the object
-	setMouseCallback(windowName, mouseHandler, (void *)&params);
+	setMouseCallback(windowName, mouseCallback, (void *)&params);
 
 	// end selection process on SPACE (32) BACKSPACE (27) or ENTER (13)
 	while (!(key == 32 || key == 27 || key == 13))

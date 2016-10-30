@@ -23,6 +23,5 @@ public:
 	} params;
 
 private:
-	static void mouseHandler(int event, int x, int y, int flags, void *param);
-	void opencv_mouse_callback(int event, int x, int y, int, void *param);
+	static void mouseCallback(int event, int x, int y, int, void *param);
 };
